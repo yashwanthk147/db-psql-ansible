@@ -1,0 +1,15 @@
+- name: Restore PostgreSQL database
+  become: true
+  become_user: postgres
+  postgresql_db:
+    name: hspacedb_230601
+    state: restore
+    target: /tmp/hspacedb_230601.sql
+
+
+- name: Copy PostgreSQL database folder
+  become: true
+  become_user: postgres
+  copy:
+    src: /tmp/.local
+    dest: /opt/api/helixcust01/
